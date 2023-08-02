@@ -1,0 +1,138 @@
+openapi: '3.0.2'
+info:
+  title: MICRO SERVICES CURD OPERATIONS
+  version: '1.0'
+servers:
+  - url: http://localhost:8000
+
+
+paths:
+  /createStudentProfile:
+    post:
+      tags:
+        - student
+      description: create student
+      # operationId: UserCreate
+      responses:
+        '201':
+          description: Create Student Sucessfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Create Student Failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: UserCreate
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BODYDATA'
+  /getStudentdetails:
+    get:
+      tags:
+        - student
+      description:  Get student
+      # operationId: GetUser
+      responses:
+        '201':
+          description: Get student Sucessfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BODYDATA'
+        '400':
+          description: Get student Failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /UpdateStudent/{id}:
+    put:
+      tags:
+        - student
+      description:  Update Student
+      # operationId: UpdateUser
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '201':
+          description: Update Student Sucess
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Update student Failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+      requestBody:
+        description: UpdateUser
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BODYDATA'
+  /deleteStudent/{id}:
+    delete:
+      tags:
+        - student
+      description:  delete Student
+      # operationId: DELETEUser
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          schema:
+            type: number
+      responses:
+        '201':
+          description:  Delete Student SucessFully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        '400':
+          description: Delete student Failure
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+            
+
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      description:  ResponseInStatusCode
+      properties:
+        code: 
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string    
+          
+    BODYDATA:
+      type: object
+      properties:
+        id: 
+          type: number
+        name:
+          type: string
+            
+          

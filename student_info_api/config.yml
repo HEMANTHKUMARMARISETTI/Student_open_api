@@ -1,0 +1,5 @@
+inputPath: openapi.yml
+
+outputPath: dict
+
+generator: "@openapi-generator-plus/typescript-express-passport-server-generator"
